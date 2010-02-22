@@ -1,0 +1,15 @@
+
+
+HOMEPAGE="http://project.ktug.or.kr/dvipdfmx/"
+SRC_URI="http://project.ktug.or.kr/dvipdfmx/snapshot/latest/${P}.tar.gz"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	# conflicts with tetex
+	rm -f ${D}/usr/bin/ebb
+
+	# http://bugs.gentoo.org/201258
+	dosym /usr/share/poppler/cMap /usr/share/texmf/fonts/cmap/cMap
+}
